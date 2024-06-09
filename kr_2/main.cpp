@@ -178,12 +178,13 @@ public:
             std::vector<FractionNumber> &stale = base_1;
             std::vector<FractionNumber> &removable = base_2;
 
-            if (a_i[0] <= a_i[1] && a_i[0] > 0) {
-                fmt::print("Chose first line as a_i min\n");
+            fmt::print("Adding x_{} as new basis var (this line has max(delta | delta > 0))\n", pos + 1);
+            if (a_i[0] <= a_i[1] && a_i[0] > 0 || a_i[1] < 0) {
+                fmt::print("Instead of x_{} (this line has min(a_i | a_i > 0))\n", vars.first + 1);
             } else {
                 first_line = false;
                 std::swap(stale, removable);
-                fmt::print("Chose second line as a_i min\n");
+                fmt::print("Instead of x_{} (this line has min(a_i | a_i > 0))\n", vars.second + 1);
             }
 
             FractionNumber support_element = stale[pos];
